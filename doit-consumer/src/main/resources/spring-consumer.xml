@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+    <!--在注册中心注册两个服务-->
+    <!--注册中心-->
+    <dubbo:registry address="zookeeper://39.106.185.96:2181"/>
+    <!--显示应用名称-->
+    <dubbo:application name="myconsumer"/>
+    <!--配置引用 dubbo:reference interface 指的是消费方从提供方获得的接口全限定名,id必须保证唯一,在代码中使用时用的就是这个id-->
+    <dubbo:reference interface="com.qf.shop.service.DemoService" id="demoService"/>
+    <dubbo:reference interface="com.qf.shop.service.HelloService" id="helloService"/>
+
+
+</beans>
